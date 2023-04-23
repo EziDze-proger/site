@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="ecologiya" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/a_eco/images/eco_logo.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/a_eco/css/styles.css" type="text/css"/>
+    <title>ecologiya</title>
+</head>
+<body>
+    <header> 
+        <div class="but">
+            <a href="{% url 'about us' %}" target="_self"><div class="header-but">О компании</div></a>{% if request.user.is_authenticated %}<a href="{% url 'link' %}" target="_self"><div class="header-but">Реферальная система</div></a>{% endif %}<a href="{% url 'contacts' %}" target="_self"><div class="header-but">Контакты</div></a>{% if user.is_authenticated %}<a href="{% url 'support_for_user' %}" target="_self"><div class="header-but">Техническая поддержка</div></a>{% endif %}{% if request.user.is_authenticated %}<div class="user-log-in"><div class="user-log-in-in">{{user.username}}</div></div><a href="{% url 'logout' %}" class="logout"><div>выйти</div></a>{% else %}<a href="{% url 'login' %}" class="header-login"><div>Авторизация</div></a><a href="{% url 'register' %}" class="header-sign-up"><div>Регистрация</div></a>{% endif %}
+        </div>
+    </header>
+
+    <img src="/static/a_eco/images/eco_logo.jpg" alt="сорянчик нет котиков" class="image" onclick="window.location.href='/';">
+    <div class="head-text" style="vertical-align: middle">Заботимся о планете вместе: экологические товары по низким ценам!</div>
+
+    {% block content_1 %}
+    <form action="{% url 'search' %}" method="get" id="search-id">
+        <div class="search-box">
+            <input class="search-text" type="text" placeholder="введите ваш запрос" name="q" id="input-id" value="{{ search_value }}">
+            <button href="#" class="search-btn" type="submit"><img src="/static/a_eco/images/lupe.png" alt="нет картинки" class="search-img"></button>
+        </div>
+    </form>
+    
+    {% block content %}
+    <div class="goods">
+        {% for model in model_list %}
+            <a href="{{ model.get_absolute_url }}" class="btn-product">
+                <div class="product">
+                    <div class="title">{{ model.title|truncatechars:33 }} <br></div>
+                    <!-- <div class="content">{{ model.content|truncatechars:101 }} <br></div> -->
+                    <div class="price">{{ model.price }} ₽<br></div>
+
+                    <div class="foto">
+                        {% if model.foto %}
+                            <img src="{{ model.foto.url }}" class="image-product">
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    {% endblock %}
+    {% endblock %}
+
+    {% if request.user.is_authenticated %}
+    <div class="basket">
+        <a href="#"><img src="/static/a_eco/images/basket.png" alt="" class="basket-img"></a>
+    </div>
+    {% endif %}
+    
+</body>
+</html>

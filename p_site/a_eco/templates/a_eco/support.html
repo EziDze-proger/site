@@ -1,0 +1,22 @@
+{% extends 'a_eco/base.html' %}
+
+{% block content_1 %}
+    <div class="title-support">Чем мы можем вам помочь?</div>
+    <div class="block-form-support">
+        <form action="{% url 'support_for_user' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit" class="btn-send">Отправить</button>
+        </form>
+        <div class="download-from-support">Загрузить файл</div>
+        
+        {% if text_after_post %}
+            <div class="alert-success">
+                {{ text_after_post }}
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="/static/a_eco/js/scr.js"></script>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'a_eco/base.html' %}
+
+{% block content_1 %}
+    <div class="title-support">РЕГИСТРАЦИЯ</div>
+    <div class="block-register">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit" class="btn-send-reg">Регистрация</button>
+        </form>
+    </div>
+
+{% endblock %}

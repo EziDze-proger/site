@@ -1,0 +1,13 @@
+{% extends 'a_eco/base.html' %}
+
+{% block content_1 %}
+    <div class="title-support">ВХОД</div>
+    <div class="block-login">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button type="submit" class="btn-send-login">Войти</button>
+        </form>
+    </div>
+
+{% endblock %}

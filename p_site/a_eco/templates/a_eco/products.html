@@ -1,0 +1,11 @@
+{% extends 'a_eco/base.html' %}
+
+{% block content_1 %}
+    <div class="main-block">
+        <div class="title-block">{{ title }}</div> <br>
+        <div class="content-block">{{ content_model }}</div> <br>
+        <div class="price-block"><a href="#" class="href-price-block">{{ price_for_sell }}</a></div>
+        <div class="foto-block"><img src="{{ foto.url }}" alt=""></div>
+    </div>
+    
+{% endblock %}

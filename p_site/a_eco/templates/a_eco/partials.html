@@ -1,0 +1,21 @@
+{% extends 'a_eco/base.html' %}
+
+{% block content %}
+    <div class="goods">
+        {% for model in search_list %}
+            <a href="{{ model.get_absolute_url }}" class="btn-product">        
+                <div class="product">
+                    <div class="title">{{ model.title|truncatechars:33 }} <br></div>
+                    <!-- <div class="content">{{ model.content|truncatechars:101 }} <br></div> -->
+                    <div class="price">{{ model.price }} ₽<br></div>
+
+                    <div class="foto">
+                        {% if model.foto %}
+                            <img src="{{ model.foto.url }}" class="image-product">
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
